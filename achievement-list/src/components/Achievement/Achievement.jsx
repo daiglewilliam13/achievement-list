@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Achievement = () => {
+const Achievement = (props) => {
 	return(
-	<p>Got Out of Bed</p>
+		<p>{props.achievement}</p>
 	)
 }
 

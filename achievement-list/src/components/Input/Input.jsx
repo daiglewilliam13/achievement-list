@@ -1,16 +1,22 @@
-import React from 'react'
+import React, {useState, setState, useEffect} from 'react';
 import Display from '../Display/Display.jsx';
 
 const Input = () => {
+	const [achievements, setAchievements] = useState([]);
+	const [input, setInput] = useState('');
+	const addAchievement = (e) => {
+		e.preventDefault();
+		setAchievements([...achievements, input]);
+	}
 	return (
 	<>
 	<div className="input-wrapper">
 	<form>
-	<input type="text" name="achievement" placeholder="What did you get done today?"></input>
-	<button>I did it!</button>
+	<input onChange={e => setInput(e.target.value)} type="text" name="achievement" placeholder="What did you get done today?"></input>
+	<button onClick={addAchievement}>I did it!</button>
 	</form>
 	<div className="your-achievements">
-	<Display />
+	<Display achievements={achievements} />
 	</div>
 	</div>
 	</>

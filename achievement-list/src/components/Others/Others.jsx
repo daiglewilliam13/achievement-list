@@ -1,8 +1,11 @@
 import React from 'react';
-
+import Achievement from '../Achievement/Achievement.jsx';
 const Others = () => {
 	return(
-	<p>Others' Achievements</p>
+	<>
+	<p>Accomplishments from other people: </p>	
+	<Achievement />
+	</>
 	)
 }
 
