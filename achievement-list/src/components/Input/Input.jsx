@@ -7,12 +7,13 @@ const Input = () => {
 	const addAchievement = (e) => {
 		e.preventDefault();
 		setAchievements([...achievements, input]);
+		setInput('');
 	}
 	return (
 	<>
 	<div className="input-wrapper">
 	<form>
-	<input onChange={e => setInput(e.target.value)} type="text" name="achievement" placeholder="What did you get done today?"></input>
+	<input value={input} onChange={e => setInput(e.target.value)} type="text" name="achievement" placeholder="What did you get done today?"></input>
 	<button onClick={addAchievement}>I did it!</button>
 	</form>
 	<div className="your-achievements">
