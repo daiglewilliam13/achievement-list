@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Achievement from '../Achievement/Achievement.jsx';
 const Others = () => {
-	return(
-	<>
-	<p>Accomplishments from other people: </p>	
-	<Achievement />
-	</>
-	)
-}
+	const [otherAchievements, setOtherAchievements] = useState({});
+	let achArr;
+	useEffect(() => {
+		axios
+			.get('https://daigleportfolio.run-us-west2.goorm.io/samples/achievement/other')
+			.then((res) => {
+				setOtherAchievements(res.data[0]);
+			});
+	}, []);
+	if (otherAchievements.achievements) {
+		const dateOptions = {
+			weekday: 'long',
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric',
+		};
+		let date = new Date(otherAchievements.date);
+		return (
+			<>
+				<p>Accomplishments from other people: </p>
+				<p>
+					{otherAchievements.name} since {date.toLocaleString('en-US', dateOptions)}
+				</p>
+				{otherAchievements.achievements.map((ach, index) => {
+					return <Achievement key={index} achievement={ach} className="other-ach" />;
+				})}
+			</>
+		);
+	} else {
+		return <p>One Second</p>;
+	}
+};
 
 export default Others;
