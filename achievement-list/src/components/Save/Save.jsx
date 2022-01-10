@@ -36,11 +36,28 @@ const Save = (props) => {
 			}
 		}
 	};
+	const reset = (e) => {
+		window.location.reload();
+	}
+	const deleteList = (e) => {
+		e.preventDefault();
+		console.log("delete " + listId);
+		if(listId=="61db929371bb51061f686efc") {
+			alert("you do not have permission");
+		} else {
+			axios.get('https://daigleportfolio.run-us-west2.goorm.io/samples/achievement/delete/' + listId)
+			.then((res)=>{
+				alert('deleted');
+				window.location.reload();
+			})
+		}
+	}
 	useEffect(() =>{
 		setDisplayName(props.displayName)
 		setListId(props.listId)
 	},[props.displayName, props.listId])
 	return (
+		<>
 		<div>
 			<p>Save your achievements so others can see!</p>
 			<form>
@@ -52,10 +69,20 @@ const Save = (props) => {
 					value={displayName}
 					onChange={(e) => setDisplayName(e.target.value)}
 				></input>
-				<button onClick={handleShare}>{listId ? 'Update' : 'Share'} with others!</button>
+				<button id="share-button" onClick={handleShare}>{listId ? 'Update' : 'Share'} with others!</button>
 			</form>
 			{listId ? <p id="list-id">Your List ID: {listId}</p> : <p></p>}
 		</div>
+		<div id="reset-wrapper">
+		<button onClick={reset} id="reset-button">Reset/Clear All</button>
+		</div>
+		<div id="delete-wrapper">
+			{ listId ?
+			<button id="delete-button" onClick={deleteList}>Delete List (NO UNDO)</button>
+			: <p></p>	
+			}
+		</div>
+		</>
 	);
 };
 
