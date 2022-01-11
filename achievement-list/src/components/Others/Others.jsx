@@ -3,7 +3,6 @@ import axios from 'axios';
 import Achievement from '../Achievement/Achievement.jsx';
 const Others = () => {
 	const [otherAchievements, setOtherAchievements] = useState({});
-	let achArr;
 	useEffect(() => {
 		axios
 			.get('https://daigleportfolio.run-us-west2.goorm.io/samples/achievement/other')

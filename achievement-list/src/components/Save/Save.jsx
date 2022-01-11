@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Modal from "../Modal/Modal";
+import useModal from '../Modal/useModal';
+import "./save.css";
 
 const Save = (props) => {
+	const {isShowing, toggle} = useModal();
 	const [displayName, setDisplayName] = useState(props.displayName);
 	const [listId, setListId] = useState(props.listId);
 	const updateList = (id) => {
@@ -19,7 +23,7 @@ const Save = (props) => {
 		if (listId) {
 			updateList(listId);
 		} else {
-			if (displayName) {
+			if (displayName && props.achievements.length > 0) {
 				axios
 					.post(
 						'https://daigleportfolio.run-us-west2.goorm.io/samples/achievement/save',
@@ -32,7 +36,7 @@ const Save = (props) => {
 						setListId(res.data._id);
 					});
 			} else {
-				alert('you need a name');
+				alert('you need a name or achievement');
 			}
 		}
 	};
@@ -42,7 +46,7 @@ const Save = (props) => {
 	const deleteList = (e) => {
 		e.preventDefault();
 		console.log("delete " + listId);
-		if(listId=="61db929371bb51061f686efc") {
+		if(listId==="61db929371bb51061f686efc") {
 			alert("you do not have permission");
 		} else {
 			axios.get('https://daigleportfolio.run-us-west2.goorm.io/samples/achievement/delete/' + listId)
@@ -52,6 +56,7 @@ const Save = (props) => {
 			})
 		}
 	}
+	
 	useEffect(() =>{
 		setDisplayName(props.displayName)
 		setListId(props.listId)
@@ -74,11 +79,20 @@ const Save = (props) => {
 			{listId ? <p id="list-id">Your List ID: {listId}</p> : <p></p>}
 		</div>
 		<div id="reset-wrapper">
+
 		<button onClick={reset} id="reset-button">Reset/Clear All</button>
 		</div>
 		<div id="delete-wrapper">
 			{ listId ?
-			<button id="delete-button" onClick={deleteList}>Delete List (NO UNDO)</button>
+			<>
+			<button id="delete-button" onClick={toggle}>Delete List (NO UNDO)</button>
+			<Modal
+			isShowing={isShowing}
+			hide={toggle}
+			deleteList={deleteList}
+			listId={listId}
+			/>
+			</>
 			: <p></p>	
 			}
 		</div>
