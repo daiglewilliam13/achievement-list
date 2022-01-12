@@ -4,8 +4,9 @@ import Achievement from '../Achievement/Achievement.jsx';
 const Others = () => {
 	const [otherAchievements, setOtherAchievements] = useState({});
 	useEffect(() => {
-		axios
-			.get('https://daigleportfolio.me/samples/achievement/other')
+		axios({url:'/other', 
+			   baseURL:'https://daigleportfolio.me/samples/achievement/',
+			  method: 'GET'})
 			.then((res) => {
 				setOtherAchievements(res.data[0]);
 			});
