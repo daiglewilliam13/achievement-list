@@ -16,7 +16,7 @@ const Input = () => {
 	};
 	const findList = (e) => {
 		e.preventDefault();
-		let url = 'https://daigleportfolio.run-us-west2.goorm.io/samples/achievement/' + listId;
+		let url = 'https://daigleportfolio.me/samples/achievement/' + listId;
 		axios.get(url).then((res) => {
 			setAchievements(res.data.achievements);
 			setName(res.data.name);

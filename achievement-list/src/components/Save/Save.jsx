@@ -10,7 +10,7 @@ const Save = (props) => {
 	const [listId, setListId] = useState(props.listId);
 	const updateList = (id) => {
 		axios
-			.post('https://daigleportfolio.run-us-west2.goorm.io/samples/achievement/update', {
+			.post('https://daigleportfolio.me/samples/achievement/update', {
 				id: id,
 				achievements: props.achievements,
 			})
@@ -26,7 +26,7 @@ const Save = (props) => {
 			if (displayName && props.achievements.length > 0) {
 				axios
 					.post(
-						'https://daigleportfolio.run-us-west2.goorm.io/samples/achievement/save',
+						'https://daigleportfolio.me/samples/achievement/save',
 						{
 							name: displayName,
 							achievements: props.achievements,
