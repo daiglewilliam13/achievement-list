@@ -16,7 +16,7 @@ const Input = () => {
 	};
 	const findList = (e) => {
 		e.preventDefault();
-		let url = 'https://daigleportfolio.me/samples/achievement/' + listId;
+		let url = 'https://www.daigleportfolio.me/samples/achievement/' + listId;
 		axios.get(url).then((res) => {
 			setAchievements(res.data.achievements);
 			setName(res.data.name);
@@ -52,12 +52,12 @@ const Input = () => {
 				<ul>
 					{achievements.map((ach, index) => {
 						return (
-							<>
-								<li className="li-wrapper" data-key={index} >
-									<Achievement achievement={ach} key={index} />
+						
+								<li className="li-wrapper" data-key={index} key={index} >
+									<Achievement achievement={ach} />
 									<button onClick={removeSelf}>Del</button>
 								</li>
-							</>
+							
 						);
 					})}
 				</ul>

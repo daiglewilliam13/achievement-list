@@ -5,8 +5,11 @@ const Others = () => {
 	const [otherAchievements, setOtherAchievements] = useState({});
 	useEffect(() => {
 		axios({url:'/other', 
-			   baseURL:'https://daigleportfolio.me/samples/achievement/',
-			  method: 'GET'})
+			   baseURL:'https://www.daigleportfolio.me/samples/achievement/',
+			  method: 'GET',
+			  headers:{
+				  'Content-Type': 'application/json'
+			  }})
 			.then((res) => {
 				setOtherAchievements(res.data[0]);
 			});

@@ -10,7 +10,7 @@ const Save = (props) => {
 	const [listId, setListId] = useState(props.listId);
 	const updateList = (id) => {
 		axios
-			.post('https://daigleportfolio.me/samples/achievement/update', {
+			.post('https://www.daigleportfolio.me/samples/achievement/update', {
 				id: id,
 				achievements: props.achievements,
 			})
@@ -49,7 +49,7 @@ const Save = (props) => {
 		if(listId==="61db929371bb51061f686efc") {
 			alert("you do not have permission");
 		} else {
-			axios.get('https://daigleportfolio.run-us-west2.goorm.io/samples/achievement/delete/' + listId)
+			axios.get('https://www.daigleportfolio.run-us-west2.goorm.io/samples/achievement/delete/' + listId)
 			.then((res)=>{
 				alert('deleted');
 				window.location.reload();
