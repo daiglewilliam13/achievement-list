@@ -5,7 +5,7 @@ const Others = () => {
 	const [otherAchievements, setOtherAchievements] = useState({});
 	useEffect(() => {
 		axios
-			.get('https://daigleportfolio.run-us-west2.goorm.io/samples/achievement/other')
+			.get('https://daigleportfolio.me/samples/achievement/other')
 			.then((res) => {
 				setOtherAchievements(res.data[0]);
 			});
