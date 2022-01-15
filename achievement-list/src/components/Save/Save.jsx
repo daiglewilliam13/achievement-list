@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCopy} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import Modal from "../Modal/Modal";
 import useModal from '../Modal/useModal';
@@ -58,7 +60,17 @@ const Save = (props) => {
 			})
 		}
 	}
-	
+	const copyToClip = (e) => {
+		e.preventDefault();
+		let text = props.listId;
+		let statusEl = document.getElementById('copy-status');
+navigator.clipboard.writeText(text).then(function() {
+  console.log('Async: Copying to clipboard was successful!' + text);
+	statusEl.innerText = 'copied to clipboard!';
+}, function(err) {
+  console.error('Async: Could not copy text: ', err);
+});
+	}
 	useEffect(() =>{
 		setDisplayName(props.displayName)
 		setListId(props.listId)
@@ -79,7 +91,9 @@ const Save = (props) => {
 				></input>
 				<button id="save-button" onClick={handleShare}>Save Your List</button>
 			</form>
-			{listId ? <p id="list-id">Your List ID: {listId}</p> : <p></p>}
+			{listId 
+				? <p id="list-id">Your List ID: {listId}<button id="copy-icon" onClick={copyToClip}><FontAwesomeIcon icon={faCopy} /></button><span id="copy-status"></span></p> 
+				: <p></p>}
 		</div>
 
 		<div id="delete-wrapper">

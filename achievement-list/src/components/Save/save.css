@@ -3,3 +3,11 @@
 	font-size: 1.5rem;
 }
 
+button#copy-icon {
+	border-radius: 2px;
+	font-size:1rem;
+}
+
+span#copy-status {
+	font-size: 1rem;
+}
