@@ -1,0 +1,11 @@
+
+#other-li-wrapper {
+	padding: 0 10%;
+	margin: 0 0 1px 0;
+}
+
+span#other-name {
+	font-size: 2rem;
+	font-weight: 300;
+	font-style: italic;
+}

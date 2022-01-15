@@ -9,6 +9,10 @@ const Save = (props) => {
 	const [displayName, setDisplayName] = useState(props.displayName);
 	const [listId, setListId] = useState(props.listId);
 	const updateList = (id) => {
+		if (id=="61db929371bb51061f686efc"){
+			alert('You do not have permission because you are not Mick.');
+		} else {
+			
 		axios
 			.post('https://www.daigleportfolio.me/samples/achievement/update', {
 				id: id,
@@ -17,6 +21,7 @@ const Save = (props) => {
 			.then((res) => {
 				console.log(res);
 			});
+		}
 	};
 	const handleShare = (e) => {
 	e.preventDefault();
@@ -26,7 +31,7 @@ const Save = (props) => {
 			if (displayName && props.achievements.length > 0) {
 				axios
 					.post(
-						'https://daigleportfolio.me/samples/achievement/save',
+						'https://www.daigleportfolio.me/samples/achievement/save',
 						{
 							name: displayName,
 							achievements: props.achievements,
@@ -40,16 +45,13 @@ const Save = (props) => {
 			}
 		}
 	};
-	const reset = (e) => {
-		window.location.reload();
-	}
 	const deleteList = (e) => {
 		e.preventDefault();
 		console.log("delete " + listId);
 		if(listId==="61db929371bb51061f686efc") {
 			alert("you do not have permission");
 		} else {
-			axios.get('https://www.daigleportfolio.run-us-west2.goorm.io/samples/achievement/delete/' + listId)
+			axios.get('https://www.daigleportfolio.me/samples/achievement/delete/' + listId)
 			.then((res)=>{
 				alert('deleted');
 				window.location.reload();
@@ -63,25 +65,23 @@ const Save = (props) => {
 	},[props.displayName, props.listId])
 	return (
 		<>
-		<div>
+		<div id="save-wrapper">
 			<p>Save your achievements so others can see!</p>
 			<form>
 				<input
 					required
+					id="name-input"
 					type="text"
 					name="name"
 					placeholder="Your Name"
 					value={displayName}
 					onChange={(e) => setDisplayName(e.target.value)}
 				></input>
-				<button id="share-button" onClick={handleShare}>{listId ? 'Update' : 'Share'} with others!</button>
+				<button id="save-button" onClick={handleShare}>Save Your List</button>
 			</form>
 			{listId ? <p id="list-id">Your List ID: {listId}</p> : <p></p>}
 		</div>
-		<div id="reset-wrapper">
 
-		<button onClick={reset} id="reset-button">Reset/Clear All</button>
-		</div>
 		<div id="delete-wrapper">
 			{ listId ?
 			<>

@@ -7,9 +7,11 @@ import './main.css';
 const Main = () => {
 	return (
 	<>
+	<div id="main">
 	<Header />
 	<Input />
 	<Others />
+	</div>
 	</>
 	)
 }

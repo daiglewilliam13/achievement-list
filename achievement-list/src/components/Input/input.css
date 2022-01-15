@@ -1,6 +1,61 @@
+#ach-input{
+	width: 70%;
+	padding: .5rem;
+	text-align: center;
+	border: none;
+}
+
 .li-wrapper {
 	display: flex;
+	box-sizing: border-box;
+	overflow:hidden;
+	animation: expand .3s forwards 1 ease-in-out;
 	width: 100%;
-	justify-content:center;
-	margin: 0 auto;
+	height: 100%;
+	margin: 0 0 1px 0;
+}
+
+.list-icon {
+	font-size: 2rem;
+	width: 10%;
+	background-color: #bed3e8;
+	text-shadow: 0px 0px 3px black;
+}
+
+.achievements-wrapper ul {
+padding: 0 1rem;
+
+}
+
+.delete-button {
+	margin: 0;
+	background-color: #bed3e8;
+	border-left: 1px solid black;
+	border-radius: 0px;
+	cursor: pointer;
+}
+
+button#sample-list, 
+button#clear {
+	font-size: 1rem;
+}
+
+.achievement {
+	flex-grow: 2;
+	margin: 0;
+	font-size: 1.5rem;
+	box-sizing:border-box;
+	text-align: left;
+	background-color: #bed3e8;
+	padding: .5rem 0 0 0;
+}
+
+@keyframes expand {
+	0%{
+		transform: scaley(0)
+	}
+	100% {
+		transform: scaley(1)
+
+	}
 }

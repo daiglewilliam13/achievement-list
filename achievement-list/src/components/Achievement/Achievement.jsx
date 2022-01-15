@@ -2,7 +2,7 @@ import React from 'react';
 
 const Achievement = (props) => {
 	return(
-		<p>{props.achievement}</p>
+		<p className="achievement">{props.achievement}</p>
 	)
 }
 
